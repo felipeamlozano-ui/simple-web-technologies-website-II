@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+      <link rel="stylesheet" href="../CSS/style2.css">
+</head>
+<body>
+    <main>
+        <div id="cont" class="container">
+            <div class="card">
+                <button id="voltar" class="butao">Página Principal</button>
+                <h1 id="title">LOGIN</h1>
+                <form action="../index.php" method="POST">
+                    <div class="inputs">Email: <input class="email" name="email" type="email" placeholder="Ex: 123joazin@gmail.com" required></div>
+                    <div class="inputs">Usuário: <input class="name" name="name" type="text" placeholder="Ex: joao augusto pereira" required></div>
+                    <div class="inputs">Senha: <input class="name" name="password" type="password" placeholder="Ex: 1234@joao2008" required></div>
+                    <div class="enviar"><input class="submit" value="Login" type="submit"></div>
+                </form>
+                <div class="enviar"><input id="registro" class="submit" value="Registrar" name="registrar" type="button"></div>
+            </div>
+        </div>
+        <div class="registraruser">
+            <div class="perfil">
+                <form  action="../index.php"  method="post" class="regristroooo">
+                    <h2 style="display: block; opacity: 1; color: white;" class="tituloperfil">Selecione Sua Foto de Perfil</h2>
+                    <div class="imagensperfil">
+                        <input name="foto" required value="imagem1" type="radio"><img class="img1" src="../IMAGENS/43117268-homem-silhueta-perfil-cenario-anime-estilo-gratis-vetor.jpg">
+                        <input name="foto" required value="imagem2" type="radio"><img class="img1" src="../IMAGENS/fotor-03d1a91a0cec4542927f53c87e0599f6.jpg">
+                    </div>
+                    <div class="registroo">    
+                        <h1 style="display: block; opacity: 1; color: white;" id="tr" class="tituloregistro">Faça seu registro</h1>
+                        <p class="pp1">Usuário:</p><input class="inputr" name="name1" type="text" placeholder="Ex: Joao Alves Pedro" required>
+                        <p class="pp1">E-Mail:<input class="inputr" name="email1" type="email" placeholder="Ex: joaozin123@gmail.com" required>
+                        <p class="pp1">Senha:<input class="inputr" name="password1" type="password" placeholder="Ex: 123456789@joao" required>
+                        <input style="margin-top: 30px;" class="inputb" name="buttonsubmit" type="submit" value="Registrar">
+                        <input id="voltarbut" style="margin-top: 10px;" class="inputb" name="buttonvoltar" type="button" value="Voltar">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+    <script src="../JAVASCRIPT/script2.js"></script>
+</body>
+</html>

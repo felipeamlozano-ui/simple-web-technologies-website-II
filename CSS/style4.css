@@ -1,0 +1,281 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    font-family: 'Arial';
+    background-color: black;
+    overflow: hidden;
+}
+
+body {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 1fr;
+}
+.container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    grid-column: 2;
+    grid-row: 1;
+    margin-left: 20vw;
+}
+.card {
+    border-radius: 15px;
+    background-color: rgba(44, 43, 58, 0.908);
+    box-shadow: 0px 0px 15px rgb(255, 255, 255);
+    width: 30rem;
+    height: 25rem;
+    text-align: center;
+    color: white;
+}
+.inputs {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 15px;
+    width: 100%;
+    font-weight: bold;
+    border: none;
+}
+
+.inputs input {
+    border-radius: 5px;
+    border: transparent;
+    margin-bottom: 10px;
+    width: 20rem;
+    border: none;
+    outline: none;
+}
+.inputs input::placeholder{
+    opacity: 0.3;
+}
+.enviar input, .butao {
+    margin-top: 1rem;
+    background-color: rgb(255, 255, 255);
+    border: transparent solid 1px;
+    border-radius: 15px;
+    transition: transform 0.3s;
+    width: 150px;
+    box-shadow: 0px 0px 5px rgb(178, 177, 177);
+    font-weight: bold;
+    font-family: 'Arial';
+    border: none;
+}
+.enviar input:hover, .butao:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+}
+.img1 {
+    border-radius: 90px;
+    width: 10vw;
+    height: 20vh;
+}
+.registraruser .perfil {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.registroo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.regristroooo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.inputr {
+    width: 300px;
+    padding: 5px 10px;
+    border-radius: 15px;
+    border: none;
+    box-shadow: 0px 0px 5px black;
+    text-align: center;
+    display: block;
+    outline: none;
+    margin-bottom: 15px;
+}
+.pp1{
+    color: white;
+    margin: 0;
+}
+.regristroooo input::placeholder{
+    opacity: 0.3;
+}
+.pp1{
+    font-family: Arial;
+    font-weight: bold;
+}
+.inputb{
+    border-radius: 15px;
+    border: none;
+    transition: transform 0.3s;
+    font-family: Arial;
+    font-weight: bold;
+    width: 100%;
+    box-shadow: 0px 0px 5px rgb(178, 177, 177);
+    background-color: rgb(255, 255, 255);
+}
+.inputb:hover{
+    transform: scale(1.1);
+}
+.imagensperfil{
+    flex-direction: column;
+}
+.registroo a:visited{
+    color: black;
+    width: 100%;
+}
+@media (max-width: 1047px){
+    .card{
+        width: 25rem;
+        height: 20rem;
+    }
+    .inputs{
+        width: 100%;
+    }
+    .inputs input{
+        width: 20rem;
+        margin-bottom: 0px;
+    }
+    .enviar input, .butao{
+        width: 125px;
+        margin-top: 0.5rem;
+    }
+    #title{
+        font-size: 25px;
+    }
+}
+@media (max-width: 797px){
+    .card{
+        width: 20rem;
+        height: 18rem;
+    }
+    .inputs{
+        width: 100%;
+    }
+    .inputs{
+        font-size: 10px;
+    }
+    .inputs input{
+        width: 12rem;
+        margin-bottom: 0px;
+    }
+    .enviar input, .butao{
+        width: 125px;
+        margin-top: 0.5rem;
+        font-size: 10px;
+    }
+    #title{
+        font-size: 20px;
+    }
+}
+@media (max-width: 682px){
+    .card{
+        width: 16rem;
+        height: 15rem;
+    }
+    .inputs{
+        width: 100%;
+    }
+    .inputs{
+        font-size: 8px;
+    }
+    .inputs input{
+        width: 10rem;
+        margin-bottom: 0px;
+    }
+    .enviar input, .butao{
+        width: 100px;
+        margin-top: 0.5rem;
+        font-size: 10px;
+    }
+    #title{
+        font-size: 15px;
+    }
+}
+@media (max-width: 569px){
+    .card{
+        width: 14rem;
+        height: 12rem;
+    }
+    .inputs{
+        width: 100%;
+    }
+    .inputs{
+        font-size: 8px;
+    }
+    .inputs input{
+        width: 10rem;
+        margin-bottom: 0px;
+        height: 10px;
+    }
+    .inputs input::placeholder{
+        font-size: 10px;
+    }
+    .enviar input, .butao{
+        width: 100px;
+        margin-top: 0.5rem;
+        font-size: 7px;
+    }
+    #title{
+        font-size: 10px;
+    }
+}
+@media (max-width: 569px){
+    .card{
+        width: 14rem;
+        height: 12rem;
+    }
+    .inputs{
+        width: 100%;
+    }
+    .inputs{
+        font-size: 8px;
+    }
+    .inputs input{
+        width: 10rem;
+        margin-bottom: 0px;
+        height: 10px;
+    }
+    .inputs input::placeholder{
+        font-size: 10px;
+    }
+    .enviar input, .butao{
+        width: 100px;
+        margin-top: 0.5rem;
+        font-size: 7px;
+    }
+    #title{
+        font-size: 10px;
+    }
+}
+
+.inputs textarea {
+    height: 20px;              
+    width: 50px;           
+    min-width: 12rem;
+    max-width: 25rem;           
+    outline: none;
+    padding: 30px;
+    font-family: Arial;
+    resize: none;            
+    overflow-x: auto;        
+    overflow-y: hidden;  
+    white-space: nowrap;
+}
