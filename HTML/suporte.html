@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../CSS/style4.css">
+</head>
+<body>
+    <main>
+        <div class="container">
+            <div class="card">
+                <button id="voltar" class="butao" onclick="window.location.href='paginaprincipal.php'">Página Principal</button>
+                <h1 id="title">FORMULÁRIO DE SUPORTE</h1>
+
+                <form method="POST">
+                    <div class="inputs">
+                        Nome: <input name="nome" type="text" placeholder="" required>
+                    </div>
+                    <div class="inputs">
+                        E-mail: <input name="email" type="email" placeholder="" required>
+                    </div>
+                    <div class="inputs">
+                        Assunto: <input name="assunto" type="text" placeholder="" required>
+                    </div>
+                    <div class="inputs">
+                        Mensagem:
+                     <textarea id="mensagem" name="mensagem" placeholder="Descreva seu problema ou dúvida..." required></textarea>
+                    </div>
+                    <div class="enviar">
+                        <input class="submit" type="submit" value="Enviar Solicitação">
+                    </div>
+                </form>
+       <script>
+const textarea = document.getElementById('mensagem');
+textarea.addEventListener('input', () => {
+    textarea.style.width = '18rem';                     
+    textarea.style.width = textarea.scrollWidth + 'px';
+});
+</script>
+        </div>
+    </main>
+</body>
+</html>
+</html>

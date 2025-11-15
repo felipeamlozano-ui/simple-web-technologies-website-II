@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contato</title>
+    <link rel="stylesheet" href="../CSS/style3.css">
+</head>
+<body>
+    <form class="formulariocentral">
+        <h1>Formulário de Contato</h1>
+        <span class="formulario1">
+            <p style="margin: 0;">Nome:</p>
+            <input type="name" placeholder="Ex: Joaozin Peres " name="name" required>
+        </span>
+        <span class="formulario1">
+            <p style="margin: 0;">E-Mail:</p>
+            <input type="email" placeholder="Ex: joaozin123@gmail.com " name="email" required>
+        </span>
+        <span class="formulario1">
+            <p style="margin: 0;">Telefone</p>
+            <input type="tel" placeholder="Ex: 35988242754" name="namber" required>
+        </span>
+        <span class="formulario1">
+            <p style="margin: 0;">Reclamação - Sugestão</p>
+            <textarea class="formaa"></textarea required>
+        </span>
+        <button id="envv" class="enviar" type="submit">Enviar</button>
+    </form>
+    <button id="btvot" class="buttao">Voltar</button>
+    <script>
+        const btvot = document.getElementById("btvot");
+        btvot.addEventListener('click',function(){
+            window.location = "../HTML/paginaprincipal.php"
+        });
+    </script>
+</body>
+</html>
