@@ -7,44 +7,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rafa decotes</title>
     <link rel="stylesheet" href="../CSS/style.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
+    </style>
 </head>
 
 <body class="body">
     <?php
     session_start();
+
+    // Nome e foto do usuário
     $nomeprincipal = $_SESSION['nomeglobal'] ?? '';
     $fotoglobal = $_SESSION['fotoglobal'] ?? 0;
 
+    // Pega o primeiro nome
     $primeiroNome = '';
     if (!empty($nomeprincipal)) {
         $primeiroNome = explode(" ", $nomeprincipal)[0];
     }
-    // $listadocarrinho = "../carrinho.json";
-    // $listadocarrinho = json_decode(file_get_contents($listadocarrinho), true);
-    // if (!is_array($listadocarrinho)) {
-    //     $listadocarrinho = []; 
-    // }
-    // $quantidade = count($listadocarrinho);
-    $listadocarrinho = "../carrinho.json";
 
-    if (file_exists($listadocarrinho)) {
-        $listadocarrinho = json_decode(file_get_contents($listadocarrinho), true);
-        if (!is_array($listadocarrinho)) {
-            $listadocarrinho = [];
-        }
-    } else {
-        $listadocarrinho = [];
-    }
-
-    $quantidade = count($listadocarrinho);
-
+    // Carrinho do usuário logado
+    $carrinho = $_SESSION['carrinho'] ?? [];
+    $quantidade = count($carrinho);
     ?>
-
     <header class="header-container">
         <div class="perfil-container">
             <div class="barrapp"></div>
             <p class="pnome" style="color: white;">
-                <?php echo $primeiroNome ?>
+                <?php echo htmlspecialchars($primeiroNome); ?>
             </p>
             <div class="perfil">
                 <img src="<?php
@@ -63,7 +53,7 @@
             <button id="login" class="button1">Login</button>
             <button id="promotion" class="button1">Promoções</button>
             <button id="suporte" class="button1">Suporte</button>
-            <div id="carrinho-de-compra">
+            <div id="carrinho-de-compra" style="cursor: pointer;">
                 <svg style="margin-top: 10px;" xmlns="http://www.w3.org/2000/svg" height="34px" viewBox="0 -960 960 960"
                     width="34px" fill="#e3e3e3">
                     <path
@@ -72,22 +62,43 @@
                 <p style="margin-top: 4px; font-size: 13px;">Carrinho
                     <span>
                         <div id="circulo-cart">
-                            <span id="contador-cart">0</span>
-                            <script>
-                                document.getElementById("contador-cart").innerText = <?php echo $quantidade; ?>;
-                                document.getElementById("carrinho-de-compra").addEventListener("click", function() {
-                                    window.location.href = 'carrinho.php';
-                                });
-                            </script>
+                            <span id="contador-cart"></span>
                         </div>
                     </span>
                 </p>
             </div>
             <div class="button2"></div>
-            <div class="titulo">Rafa's Decotaria</div>
+            <input type="checkbox" id="theme-toggle" class="toggle">
 
+            <label for="theme-toggle" class="switch">
+                <span class="knob">
+
+                    <!-- Ícone de sol -->
+                    <span class="icon light-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="yellow">
+                            <path d="M440-760v-160h80v160h-80Zm266 110-55-55 112-115 56 57-113 113Zm54 210v-80h160v80H760ZM440-40v-160h80v160h-80ZM254-652 140-763l57-56 113 113-56 54Zm508 512L651-255l54-54 114 110-57 59ZM40-440v-80h160v80H40Zm157 300-56-57 112-112 29 27 29 28-114 114Zm283-100q-100 0-170-70t-70-170q0-100 70-170t170-70q100 0 170 70t70 170q0 100-70 170t-170 70Zm0-80q66 0 113-47t47-113q0-66-47-113t-113-47q-66 0-113 47t-47 113q0 66 47 113t113 47Zm0-160Z" />
+                        </svg>
+                    </span>
+
+                    <!-- Ícone de lua -->
+                    <span class="icon dark-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="black">
+                            <path d="M484-80q-84 0-157.5-32t-128-86.5Q144-253 112-326.5T80-484q0-146 93-257.5T410-880q-18 99 11 193.5T521-521q71 71 165.5 100T880-410q-26 144-138 237T484-80Zm0-80q88 0 163-44t118-121q-86-8-163-43.5T464-465q-61-61-97-138t-43-163q-77 43-120.5 118.5T160-484q0 135 94.5 229.5T484-160Z" />
+                        </svg>
+                    </span>
+
+                </span>
+            </label>
+            </label>
+            <div class="titulo">Rafa's Decotaria</div>
         </div>
     </header>
+
+    <script>
+        document.getElementById("carrinho-de-compra").addEventListener("click", function() {
+            window.location.href = './carrinho.php';
+        });
+    </script>
     <main class="main-container">
         <button id="btm" class="botaomatriz">Voltar</button>
         <div class="categorias">
@@ -206,12 +217,14 @@
                                 <div class="animacaoload1"></div>
                             </div>
                         </div>
-                        <div class="carde-element" data-img="../IMAGENS/image-removebg-preview (5).png" data-text="Camisa de Time EA-Sports">
+                        <div class="carde-element" data-img="../IMAGENS/image-removebg-preview (5).png" data-text="Camisa de Time
+                         EA-Sports">
                             <div class="loader-wrapper1">
                                 <div class="animacaoload1"></div>
                             </div>
                         </div>
-                        <div class="carde-element" data-img="../IMAGENS/image-removebg-preview (6).png" data-text="Camisa Pain Gaming">
+                        <div class="carde-element" data-img="../IMAGENS/image-removebg-preview (6).png" data-text="Camisa
+                         Pain Gaming">
                             <div class="loader-wrapper1">
                                 <div class="animacaoload1"></div>
                             </div>
@@ -237,23 +250,26 @@
         <div id="pp2" class="paragrafo2">
             <h1 id="hhh">Produtos</h1>
             <div class="produtosemcoluna">
-                <div class="card1">
-                    <figure class="card1a">
-                        <img class="imgaa" src="../IMAGENS/aimage-removebg-preview.png">
-                        <figcaption class="legenda1">Camisa São Paulo<br>Cor: Preto<br>Preço: R$409,90</figcaption>
-                    </figure>
+                <div class="produto-element" data-img="../IMAGENS/aimage-removebg-preview.png" data-text="Camisa São Paulo
+                Cor: Preto
+                Preço: R$409,90">
+                    <div class="loader-wrapper1">
+                        <div class="animacaoload1"></div>
+                    </div>
                 </div>
-                <div class="card1">
-                    <figure class="card1a">
-                        <img class="imgaa" src="../IMAGENS/image-removebg-preview (8).png">
-                        <figcaption class="legenda1">Camisa Napoli<br>Cor: Azul<br>Preço: R$109,90</figcaption>
-                    </figure>
+                <div class="produto-element" data-img="../IMAGENS/image-removebg-preview (8).png" data-text="Camisa Napoli
+                Cor: Azul
+                Preço: R$109,90">
+                    <div class="loader-wrapper1">
+                        <div class="animacaoload1"></div>
+                    </div>
                 </div>
-                <div class="card1">
-                    <figure class="card1a">
-                        <img class="imgaa" src="../IMAGENS/image-removebg-preview (9).png">
-                        <figcaption class="legenda1">Camisa Dia Dos Pais<br>Cor: Branco<br>Preço: R$79,90</figcaption>
-                    </figure>
+                <div class="produto-element" data-img="../IMAGENS/image-removebg-preview (9).png" data-text="Camisa Dia dos Pais
+                Cor: Branco
+                Preço: R$79,90">
+                    <div class="loader-wrapper1">
+                        <div class="animacaoload1"></div>
+                    </div>
                 </div>
                 <div class="card1">
                     <figure class="card1a">

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import "../Card.css";
-function Card({ imagePath, text }) {
+import "../Produto.css";
+function Produto({ imagePath, text }) {
   const [isLoaded, setIsLoaded] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const handleAddToCart = () => {
@@ -35,7 +35,7 @@ function Card({ imagePath, text }) {
   };
   return (
     <div
-      className="card-element"
+      className="produto-element"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       style={{ position: "relative" }}
@@ -47,7 +47,7 @@ function Card({ imagePath, text }) {
       )}
 
       <img
-        className="imgjsx"
+        className="imgpjsx"
         src={imagePath}
         alt="Imagem"
         onLoad={() => setIsLoaded(true)}
@@ -91,9 +91,9 @@ function Card({ imagePath, text }) {
         </svg>
       </div>
 
-      <p className="pjsx">{text}</p>
+      <p className="pjpsx">{text}</p>
     </div>
   );
 }
 
-export default Card;
+export default Produto;

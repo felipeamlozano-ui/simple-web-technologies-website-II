@@ -1,6 +1,10 @@
 <?php
 
 session_start();
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Methods: POST, GET, OPTIONS");
+header("Access-Control-Allow-Headers: Content-Type");
+$Logado = false;
 $nomeglobal = '';
 $fotoglobal = '';
 $arquivoUsuarios = "usuarios.txt";
@@ -9,10 +13,10 @@ if (!file_exists($arquivoUsuarios)) {
 }
 $usuarios = json_decode(file_get_contents($arquivoUsuarios), true);
 if (!is_array($usuarios)) {
-    $usuarios = []; 
+    $usuarios = [];
 }
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if(isset($_POST['name']) && isset($_POST['email']) && isset($_POST['password'])) {
+    if (isset($_POST['name']) && isset($_POST['email']) && isset($_POST['password'])) {
         $nome = $_POST["name"];
         $email = $_POST["email"];
         $password = $_POST["password"];
@@ -27,14 +31,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if ($usuarioEncontrado) {
             $nomeglobal = $nome;
-            foreach($usuarios as $user){
-                if ($user['nome'] === $nomeglobal){
+            foreach ($usuarios as $user) {
+                if ($user['nome'] === $nomeglobal) {
                     $fotoglobal = $user['foto'];
                     break;
                 }
             }
-             $_SESSION['nomeglobal'] = $nome;
-             $_SESSION['fotoglobal'] = $fotoglobal;
+            $_SESSION['nomeglobal'] = $nome;
+            $_SESSION['fotoglobal'] = $fotoglobal;
+            $Logado = true;
+            $_SESSION['Status'] = $Logado;
             echo "<script>
                 alert('Logado com sucesso');
                 window.location.href='./HTML/paginaprincipal.php';
@@ -46,8 +52,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </script>";
         }
         exit;
-    }
-    elseif(isset($_POST['name1']) && isset($_POST['email1']) && isset($_POST['password1']) && isset($_POST['foto'])) {
+    } elseif (isset($_POST['name1']) && isset($_POST['email1']) && isset($_POST['password1']) && isset($_POST['foto'])) {
         $nome1 = $_POST["name1"];
         $email1 = $_POST["email1"];
         $password1 = $_POST["password1"];
@@ -69,7 +74,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             "senha" => $password1,
             "foto" => $fotoselecionada
         ];
-        
+
         $usuarios[] = $novoUsuario;
         file_put_contents($arquivoUsuarios, json_encode($usuarios, JSON_UNESCAPED_UNICODE));
 
@@ -80,4 +85,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit;
     }
 }
-?>

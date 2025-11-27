@@ -127,3 +127,70 @@ btm.addEventListener("click", function () {
   btm.style.display = "none";
   hhh.style.display = "block";
 });
+const contador = document.getElementById("contador-cart");
+function atualizarQuantidadeCarrinho() {
+  fetch(
+    "https://uncallously-productile-leighton.ngrok-free.dev/Projeto/verificacao.php"
+  )
+    .then((res) => res.json())
+    .then((situacaodousuario) => {
+      if (situacaodousuario == true) {
+        fetch(
+          "https://uncallously-productile-leighton.ngrok-free.dev/Projeto/carrinho.php",
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ idcart: true }),
+          }
+        )
+          .then((res) => res.json())
+          .then((qtd) => {
+            if (contador) {
+              contador.innerText = qtd;
+              console.log("Atualizado");
+            } else {
+              console.log("contador-cart NÃO encontrado!");
+            }
+          });
+      }
+      else{
+        console.log("Usuario não logado")
+        contador.innerText = 0;
+      }
+    });
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  setInterval(() => {
+    atualizarQuantidadeCarrinho();
+  }, 1000);
+});
+const toggle = document.getElementById("theme-toggle");
+let tema = null;
+toggle.addEventListener("change", () => {
+  if (toggle.checked) {
+    console.log("Modo escuro ativado!");
+    document.body.style.backgroundColor = "black";
+    tema = "black";
+    fetch(
+      "https://uncallously-productile-leighton.ngrok-free.dev/Projeto/configuracoes.php",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({tema}),
+      }
+    );
+  } else {
+    console.log("Modo claro ativado!");
+    document.body.style.backgroundColor = "white";
+    tema = "white";
+    fetch(
+      "https://uncallously-productile-leighton.ngrok-free.dev/Projeto/configuracoes.php",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({tema}),
+      }
+    );
+  }
+});
