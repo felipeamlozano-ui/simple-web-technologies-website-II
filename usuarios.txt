@@ -1,1 +1,26 @@
-[{"nome":"Felipe Augusto de Melo Lozano","email":"felipe.a.m.lozano@gmail.com","senha":"felipe13524","foto":1},{"nome":"ff","email":"ff@ff","senha":"ff","foto":1},{"nome":"mi","email":"hjgghfgv@gmail.com","senha":"123456","foto":2}]
+[
+    {
+        "nome": "Felipe Augusto de Melo Lozano",
+        "email": "felipe.a.m.lozano@gmail.com",
+        "senha": "felipe13524",
+        "foto": 1
+    },
+    {
+        "nome": "ff",
+        "email": "ff@ff",
+        "senha": "ff",
+        "foto": 1
+    },
+    {
+        "nome": "mi",
+        "email": "hjgghfgv@gmail.com",
+        "senha": "123456",
+        "foto": 2
+    },
+    {
+        "nome": "vv",
+        "email": "vv@vv",
+        "senha": "vv",
+        "foto": 2
+    }
+]

@@ -76,7 +76,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         ];
 
         $usuarios[] = $novoUsuario;
-        file_put_contents($arquivoUsuarios, json_encode($usuarios, JSON_UNESCAPED_UNICODE));
+        file_put_contents(
+            $arquivoUsuarios,
+            json_encode($usuarios, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT)
+        );
 
         echo "<script>
             alert('Registrado com sucesso! Faça Login!');
