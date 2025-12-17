@@ -4,28 +4,23 @@ function Card({ imagePath, text }) {
   const [isLoaded, setIsLoaded] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const handleAddToCart = () => {
-    fetch(
-      "https://uncallously-productile-leighton.ngrok-free.dev/Projeto/verificacao.php",
-      {
-        method: "POST",
-      }
-    )
+    fetch("/Projeto/verificacao.php", {
+      method: "POST",
+    })
       .then((res) => res.json()) // transforma a resposta em JSON
       .then((resultado) => {
         if (resultado === true) {
           console.log("Item adicionado ao carrinho");
-          fetch(
-            "https://uncallously-productile-leighton.ngrok-free.dev/Projeto/carrinho.php",
-            {
-              //https://uncallously-productile-leighton.ngrok-free.dev/projeto/HTML/carrinho.php
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({
-                text: text,
-                imagePath: imagePath,
-              }),
-            }
-          );
+          alert("Item adicionado ao carrinho!!");
+          fetch("/Projeto/carrinho.php", {
+            //https://uncallously-productile-leighton.ngrok-free.dev/projeto/HTML/carrinho.php
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              text: text,
+              imagePath: imagePath,
+            }),
+          });
         } else {
           console.log("Não apto a adicionar ao carrinho");
           alert("Você precisa estar logado para adicionar itens ao carrinho!");

@@ -4,18 +4,18 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Rafa decotes</title>
     <link rel="stylesheet" href="../CSS/style.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
     </style>
 </head>
+<?php ?>
 
 <body class="body">
     <?php
     session_start();
-
     // Nome e foto do usuário
     $nomeprincipal = $_SESSION['nomeglobal'] ?? '';
     $fotoglobal = $_SESSION['fotoglobal'] ?? 0;
@@ -48,50 +48,48 @@
                             ?>" alt="Foto de perfil">
             </div>
         </div>
-        <div class="cabecario">
+        <div class="buttons">
             <button id="produtos" class="button1">Produtos</button>
             <button id="login" class="button1">Login</button>
             <button id="promotion" class="button1">Promoções</button>
             <button id="suporte" class="button1">Suporte</button>
-            <div id="carrinho-de-compra" style="cursor: pointer;">
-                <svg style="margin-top: 10px;" xmlns="http://www.w3.org/2000/svg" height="34px" viewBox="0 -960 960 960"
-                    width="34px" fill="#e3e3e3">
-                    <path
-                        d="M280-80q-33 0-56.5-23.5T200-160q0-33 23.5-56.5T280-240q33 0 56.5 23.5T360-160q0 33-23.5 56.5T280-80Zm400 0q-33 0-56.5-23.5T600-160q0-33 23.5-56.5T680-240q33 0 56.5 23.5T760-160q0 33-23.5 56.5T680-80ZM246-720l96 200h280l110-200H246Zm-38-80h590q23 0 35 20.5t1 41.5L692-482q-11 20-29.5 31T622-440H324l-44 80h480v80H280q-45 0-68-39.5t-2-78.5l54-98-144-304H40v-80h130l38 80Zm134 280h280-280Z" />
-                </svg>
-                <p style="margin-top: 4px; font-size: 13px;">Carrinho
-                    <span>
-                        <div id="circulo-cart">
-                            <span id="contador-cart"></span>
-                        </div>
-                    </span>
-                </p>
-            </div>
-            <div class="button2"></div>
-            <input type="checkbox" id="theme-toggle" class="toggle">
-
-            <label for="theme-toggle" class="switch">
-                <span class="knob">
-
-                    <!-- Ícone de sol -->
-                    <span class="icon light-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="yellow">
-                            <path d="M440-760v-160h80v160h-80Zm266 110-55-55 112-115 56 57-113 113Zm54 210v-80h160v80H760ZM440-40v-160h80v160h-80ZM254-652 140-763l57-56 113 113-56 54Zm508 512L651-255l54-54 114 110-57 59ZM40-440v-80h160v80H40Zm157 300-56-57 112-112 29 27 29 28-114 114Zm283-100q-100 0-170-70t-70-170q0-100 70-170t170-70q100 0 170 70t70 170q0 100-70 170t-170 70Zm0-80q66 0 113-47t47-113q0-66-47-113t-113-47q-66 0-113 47t-47 113q0 66 47 113t113 47Zm0-160Z" />
-                        </svg>
-                    </span>
-
-                    <!-- Ícone de lua -->
-                    <span class="icon dark-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="black">
-                            <path d="M484-80q-84 0-157.5-32t-128-86.5Q144-253 112-326.5T80-484q0-146 93-257.5T410-880q-18 99 11 193.5T521-521q71 71 165.5 100T880-410q-26 144-138 237T484-80Zm0-80q88 0 163-44t118-121q-86-8-163-43.5T464-465q-61-61-97-138t-43-163q-77 43-120.5 118.5T160-484q0 135 94.5 229.5T484-160Z" />
-                        </svg>
-                    </span>
-
-                </span>
-            </label>
-            </label>
-            <div class="titulo">Rafa's Decotaria</div>
         </div>
+        <div class="titulo">Rafa's Decotaria</div>
+        <div id="carrinho-de-compra" style="cursor: pointer;">
+            <svg class="svgdocarrinho" style="margin-top: 10px;" xmlns="http://www.w3.org/2000/svg" height="34px" viewBox="0 -960 960 960"
+                width="34px" fill="#e3e3e3">
+                <path
+                    d="M280-80q-33 0-56.5-23.5T200-160q0-33 23.5-56.5T280-240q33 0 56.5 23.5T360-160q0 33-23.5 56.5T280-80Zm400 0q-33 0-56.5-23.5T600-160q0-33 23.5-56.5T680-240q33 0 56.5 23.5T760-160q0 33-23.5 56.5T680-80ZM246-720l96 200h280l110-200H246Zm-38-80h590q23 0 35 20.5t1 41.5L692-482q-11 20-29.5 31T622-440H324l-44 80h480v80H280q-45 0-68-39.5t-2-78.5l54-98-144-304H40v-80h130l38 80Zm134 280h280-280Z" />
+            </svg>
+            <p class="textodocarrinho">Carrinho
+                <span>
+                    <div id="circulo-cart">
+                        <span id="contador-cart"></span>
+                    </div>
+                </span>
+            </p>
+        </div>
+        <input type="checkbox" id="theme-toggle" class="toggle">
+
+        <label for="theme-toggle" class="switch">
+            <span class="knob">
+
+                <!-- Ícone de sol -->
+                <span class="icon light-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="yellow">
+                        <path d="M440-760v-160h80v160h-80Zm266 110-55-55 112-115 56 57-113 113Zm54 210v-80h160v80H760ZM440-40v-160h80v160h-80ZM254-652 140-763l57-56 113 113-56 54Zm508 512L651-255l54-54 114 110-57 59ZM40-440v-80h160v80H40Zm157 300-56-57 112-112 29 27 29 28-114 114Zm283-100q-100 0-170-70t-70-170q0-100 70-170t170-70q100 0 170 70t70 170q0 100-70 170t-170 70Zm0-80q66 0 113-47t47-113q0-66-47-113t-113-47q-66 0-113 47t-47 113q0 66 47 113t113 47Zm0-160Z" />
+                    </svg>
+                </span>
+
+                <!-- Ícone de lua -->
+                <span class="icon dark-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="black">
+                        <path d="M484-80q-84 0-157.5-32t-128-86.5Q144-253 112-326.5T80-484q0-146 93-257.5T410-880q-18 99 11 193.5T521-521q71 71 165.5 100T880-410q-26 144-138 237T484-80Zm0-80q88 0 163-44t118-121q-86-8-163-43.5T464-465q-61-61-97-138t-43-163q-77 43-120.5 118.5T160-484q0 135 94.5 229.5T484-160Z" />
+                    </svg>
+                </span>
+            </span>
+        </label>
+        </label>
     </header>
 
     <script>
@@ -271,152 +269,180 @@
                         <div class="animacaoload1"></div>
                     </div>
                 </div>
-                <div class="card1">
-                    <figure class="card1a">
-                        <img class="imgaa" src="../IMAGENS/image-removebg-preview (10).png">
-                        <figcaption class="legenda1">Camisa Just do It<br>Cor: Preto<br>Preço: R$139,90</figcaption>
-                    </figure>
+                <div class="produto-element" data-img="../IMAGENS/image-removebg-preview (10).png" data-text="Camisa Just do It
+                Cor: Preto
+                Preço: R$139,90">
+                    <div class="loader-wrapper1">
+                        <div class="animacaoload1"></div>
+                    </div>
                 </div>
-                <div class="card1">
-                    <figure class="card1a">
-                        <img class="imgaa" src="../IMAGENS/image-removebg-preview (11).png">
-                        <figcaption class="legenda1">Camisa Clássica Manga Curta<br>Cor: Azul<br>Preço: R$49,90
-                        </figcaption>
-                    </figure>
+
+                <div class="produto-element" data-img="../IMAGENS/image-removebg-preview (11).png" data-text="Camisa Clássica Manga Curta
+                Cor: Azul
+                Preço: R$49,90">
+                    <div class="loader-wrapper1">
+                        <div class="animacaoload1"></div>
+                    </div>
                 </div>
-                <div class="card1">
-                    <figure class="card1a">
-                        <img class="imgaa" src="../IMAGENS/image-removebg-preview (12).png">
-                        <figcaption class="legenda1">Camisa Atlético de Madrid<br>Cor: Vermelho<br>Preço: R$349,90
-                        </figcaption>
-                    </figure>
+
+                <div class="produto-element" data-img="../IMAGENS/image-removebg-preview (12).png" data-text="Camisa Atlético de Madrid
+                Cor: Vermelho
+                Preço: R$349,90">
+                    <div class="loader-wrapper1">
+                        <div class="animacaoload1"></div>
+                    </div>
                 </div>
-                <div class="card1">
-                    <figure class="card1a">
-                        <img class="imgaa" src="../IMAGENS/image-removebg-preview (13).png">
-                        <figcaption class="legenda1">Camisa Seleção Brasileira 2025<br>Cor: Azul<br>Preço: R$238,90
-                        </figcaption>
-                    </figure>
+
+                <div class="produto-element" data-img="../IMAGENS/image-removebg-preview (13).png" data-text="Camisa Seleção Brasileira 2025
+                Cor: Azul
+                Preço: R$238,90">
+                    <div class="loader-wrapper1">
+                        <div class="animacaoload1"></div>
+                    </div>
                 </div>
-                <div class="card1">
-                    <figure class="card1a">
-                        <img class="imgaa" src="../IMAGENS/image-removebg-preview (14).png">
-                        <figcaption class="legenda1">Camisa Cruzeiro<br>Cor: Branco<br>Preço: R$169,90</figcaption>
-                    </figure>
+
+                <div class="produto-element" data-img="../IMAGENS/image-removebg-preview (14).png" data-text="Camisa Cruzeiro
+                Cor: Branco
+                Preço: R$169,90">
+                    <div class="loader-wrapper1">
+                        <div class="animacaoload1"></div>
+                    </div>
                 </div>
-                <div class="card1">
-                    <figure class="card1a">
-                        <img class="imgaa" src="../IMAGENS/image-removebg-preview (18).png">
-                        <figcaption class="legenda1">Cropped Alto<br>Cor: Preto<br>Preço: R$99,90</figcaption>
-                    </figure>
+
+                <div class="produto-element" data-img="../IMAGENS/image-removebg-preview (18).png" data-text="Cropped Alto
+                Cor: Preto
+                Preço: R$99,90">
+                    <div class="loader-wrapper1">
+                        <div class="animacaoload1"></div>
+                    </div>
                 </div>
-                <div class="card1">
-                    <figure class="card1a">
-                        <img class="imgaa" src="../IMAGENS/image-removebg-preview (19).png">
-                        <figcaption class="legenda1">Cropped com Alça<br>Cor: Preto<br>Preço: R$119,90</figcaption>
-                    </figure>
+
+                <div class="produto-element" data-img="../IMAGENS/image-removebg-preview (19).png" data-text="Cropped com Alça
+                Cor: Preto
+                Preço: R$119,90">
+                    <div class="loader-wrapper1">
+                        <div class="animacaoload1"></div>
+                    </div>
                 </div>
-                <div class="card1">
-                    <figure class="card1a">
-                        <img class="imgaa" src="../IMAGENS/image-removebg-preview (17).png">
-                        <figcaption class="legenda1">Camisa Feminina Gola em V<br>Cor: Bege<br>Preço: R$59,90
-                        </figcaption>
-                    </figure>
+
+                <div class="produto-element" data-img="../IMAGENS/image-removebg-preview (17).png" data-text="Camisa Feminina Gola em V
+                Cor: Bege
+                Preço: R$59,90">
+                    <div class="loader-wrapper1">
+                        <div class="animacaoload1"></div>
+                    </div>
                 </div>
-                <div class="card1">
-                    <figure class="card1a">
-                        <img class="imgaa" src="../IMAGENS/image-removebg-preview (16).png">
-                        <figcaption class="legenda1">Camisa Feminina Gola em V<br>Cor: Branca<br>Preço: R$79,90
-                        </figcaption>
-                    </figure>
+
+                <div class="produto-element" data-img="../IMAGENS/image-removebg-preview (16).png" data-text="Camisa Feminina Gola em V
+                Cor: Branca
+                Preço: R$79,90">
+                    <div class="loader-wrapper1">
+                        <div class="animacaoload1"></div>
+                    </div>
                 </div>
-                <div class="card1">
-                    <figure class="card1a">
-                        <img class="imgaa" src="../IMAGENS/image-removebg-preview (15).png">
-                        <figcaption class="legenda1">Camisa Social Feminina Gola em V<br>Cor: Bege<br>Preço: R$229,90
-                        </figcaption>
-                    </figure>
+
+                <div class="produto-element" data-img="../IMAGENS/image-removebg-preview (15).png" data-text="Camisa Social Feminina Gola em V
+                Cor: Bege
+                Preço: R$229,90">
+                    <div class="loader-wrapper1">
+                        <div class="animacaoload1"></div>
+                    </div>
                 </div>
-                <div class="card1">
-                    <figure class="card1a">
-                        <img class="imgaa" src="../IMAGENS/imagem_2025-10-11_225604170-removebg-preview.png">
-                        <figcaption class="legenda1">Camisa Feminina Casual<br>Cor: Branco<br>Preço: R$39,90
-                        </figcaption>
-                    </figure>
+
+                <div class="produto-element" data-img="../IMAGENS/imagem_2025-10-11_225604170-removebg-preview.png" data-text="Camisa Feminina Casual
+                Cor: Branco
+                Preço: R$39,90">
+                    <div class="loader-wrapper1">
+                        <div class="animacaoload1"></div>
+                    </div>
                 </div>
-                <div class="card1">
-                    <figure class="card1a">
-                        <img class="imgaa" src="../IMAGENS/awoud (4).png">
-                        <figcaption class="legenda1">Camisa Social Feminina<br>Cor: Rosa<br>Preço: R$159,90</figcaption>
-                    </figure>
+
+                <div class="produto-element" data-img="../IMAGENS/awoud (4).png" data-text="Camisa Social Feminina
+                Cor: Rosa
+                Preço: R$159,90">
+                    <div class="loader-wrapper1">
+                        <div class="animacaoload1"></div>
+                    </div>
                 </div>
-                <div class="card1">
-                    <figure class="card1a">
-                        <img class="imgaa" src="../IMAGENS/awoud (3).png">
-                        <figcaption class="legenda1">Cropped Alto<br>Cor: Azul<br>Preço: R$119,90</figcaption>
-                    </figure>
+
+                <div class="produto-element" data-img="../IMAGENS/awoud (3).png" data-text="Cropped Alto
+                Cor: Azul
+                Preço: R$119,90">
+                    <div class="loader-wrapper1">
+                        <div class="animacaoload1"></div>
+                    </div>
                 </div>
-                <div class="card1">
-                    <figure class="card1a">
-                        <img class="imgaa" src="../IMAGENS/awoud (2).png">
-                        <figcaption class="legenda1">Camisa Clássica Feminina<br>Cor: Azul<br>Preço: R$128,90
-                        </figcaption>
-                    </figure>
+
+                <div class="produto-element" data-img="../IMAGENS/awoud (2).png" data-text="Camisa Clássica Feminina
+                Cor: Azul
+                Preço: R$128,90">
+                    <div class="loader-wrapper1">
+                        <div class="animacaoload1"></div>
+                    </div>
                 </div>
-                <div class="card1">
-                    <figure class="card1a">
-                        <img class="imgaa" src="../IMAGENS/awoud (1).png">
-                        <figcaption class="legenda1">Camisa Seleção Italiana Feminina<br>Cor: Azul<br>Preço: R$339,90
-                        </figcaption>
-                    </figure>
+
+                <div class="produto-element" data-img="../IMAGENS/awoud (1).png" data-text="Camisa Seleção Italiana Feminina
+                Cor: Azul
+                Preço: R$339,90">
+                    <div class="loader-wrapper1">
+                        <div class="animacaoload1"></div>
+                    </div>
                 </div>
-                <div class="card1">
-                    <figure class="card1a">
-                        <img class="imgaa" src="../IMAGENS/pwisohd (3).png">
-                        <figcaption class="legenda1">Camisa com Estampa Feminina<br>Cor: Verde<br>Preço: R$53,90
-                        </figcaption>
-                    </figure>
+
+                <div class="produto-element" data-img="../IMAGENS/pwisohd (3).png" data-text="Camisa com Estampa Feminina
+                Cor: Verde
+                Preço: R$53,90">
+                    <div class="loader-wrapper1">
+                        <div class="animacaoload1"></div>
+                    </div>
                 </div>
-                <div class="card1">
-                    <figure class="card1a">
-                        <img class="imgaa" src="../IMAGENS/pwisohd (2).png">
-                        <figcaption class="legenda1">Camisa Manga Longa Feminina<br>Cor: Bege<br>Preço: R$79,90
-                        </figcaption>
-                    </figure>
+
+                <div class="produto-element" data-img="../IMAGENS/pwisohd (2).png" data-text="Camisa Manga Longa Feminina
+                Cor: Bege
+                Preço: R$79,90">
+                    <div class="loader-wrapper1">
+                        <div class="animacaoload1"></div>
+                    </div>
                 </div>
-                <div class="card1">
-                    <figure class="card1a">
-                        <img class="imgaa" src="../IMAGENS/pwisohd (1).png">
-                        <figcaption class="legenda1">Camisa Fluminense Feminina<br>Cor: Padrão<br>Preço: R$349,90
-                        </figcaption>
-                    </figure>
+
+                <div class="produto-element" data-img="../IMAGENS/pwisohd (1).png" data-text="Camisa Fluminense Feminina
+                Cor: Padrão
+                Preço: R$349,90">
+                    <div class="loader-wrapper1">
+                        <div class="animacaoload1"></div>
+                    </div>
                 </div>
-                <div class="card1">
-                    <figure class="card1a">
-                        <img class="imgaa" src="../IMAGENS/pwisohd (4).png">
-                        <figcaption class="legenda1">Camisa Manga Curta Para Trabalho<br>Cor: Vermelha<br>Preço:
-                            R$109,90</figcaption>
-                    </figure>
+
+                <div class="produto-element" data-img="../IMAGENS/pwisohd (4).png" data-text="Camisa Manga Curta Para Trabalho
+                Cor: Vermelha
+                Preço: R$109,90">
+                    <div class="loader-wrapper1">
+                        <div class="animacaoload1"></div>
+                    </div>
                 </div>
-                <div class="card1">
-                    <figure class="card1a">
-                        <img class="imgaa" src="../IMAGENS/8787 (2).png">
-                        <figcaption class="legenda1">Camisa Protetiva (Raios UV) Feminina<br>Cor: Preto<br>Preço:
-                            R$153,50</figcaption>
-                    </figure>
+
+                <div class="produto-element" data-img="../IMAGENS/8787 (2).png" data-text="Camisa Protetiva (Raios UV) Feminina
+                Cor: Preto
+                Preço: R$153,50">
+                    <div class="loader-wrapper1">
+                        <div class="animacaoload1"></div>
+                    </div>
                 </div>
-                <div class="card1">
-                    <figure class="card1a">
-                        <img class="imgaa" src="../IMAGENS/8787 (1).png">
-                        <figcaption class="legenda1">Camisa Unisex<br>Cor: Roxo<br>Preço: R$147,90</figcaption>
-                    </figure>
+
+                <div class="produto-element" data-img="../IMAGENS/8787 (1).png" data-text="Camisa Unisex
+                Cor: Roxo
+                Preço: R$147,90">
+                    <div class="loader-wrapper1">
+                        <div class="animacaoload1"></div>
+                    </div>
                 </div>
-                <div class="card1">
-                    <figure class="card1a">
-                        <img class="imgaa" src="../IMAGENS/8787 (3).png">
-                        <figcaption class="legenda1">Camisa Polo Para Empresas<br>Cor: Preto<br>Preço: R$29,50
-                        </figcaption>
-                    </figure>
+
+                <div class="produto-element" data-img="../IMAGENS/8787 (3).png" data-text="Camisa Polo Para Empresas
+                Cor: Preto
+                Preço: R$29,50">
+                    <div class="loader-wrapper1">
+                        <div class="animacaoload1"></div>
+                    </div>
                 </div>
             </div>
         </div>

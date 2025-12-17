@@ -8,17 +8,14 @@ function Carrinho() {
 
   // Checa se o usuário está logado
   const checarLogin = () => {
-    fetch(
-      "https://uncallously-productile-leighton.ngrok-free.dev/Projeto/verificacao.php",
-      {
-        method: "GET",
-      }
-    )
+    fetch("/Projeto/verificacao.php", {
+      method: "GET",
+    })
       .then((res) => res.json())
       .then((resultado) => {
         if (resultado === true) {
           setUsuarioLogado(true);
-          carregarCarrinho(); // busca o JSON do carrinho
+          carregarCarrinho(); 
         } else {
           setUsuarioLogado(false);
           alert("Você precisa estar logado para acessar o carrinho.");
@@ -31,47 +28,91 @@ function Carrinho() {
   };
 
   // Carrega o carrinho do usuário logado
- const carregarCarrinho = () => {
-   fetch(
-     "https://uncallously-productile-leighton.ngrok-free.dev/Projeto/carrinho.php",
-     {
-       method: "POST",
-       headers: {
-         "Content-Type": "application/json",
-       },
-       credentials: "include",
-       body: JSON.stringify({}),
-     }
-   )
-     .then((res) => {
-       if (!res.ok) {
-         if (res.status === 401) {
-           alert("Usuário não logado");
-         }
-         throw new Error("Erro HTTP: " + res.status);
-       }
-       return res.json();
-     })
-     .then((data) => {
-       setDadosDocCarrinho(Array.isArray(data) ? data : []);
-       setMensagens(Array.isArray(data) ? Array(data.length).fill(false) : []);
-     })
-     .catch((err) => {
-       console.error("Erro ao carregar carrinho:", err);
-       alert("Erro ao carregar carrinho.");
-     });
- };
+  const carregarCarrinho = () => {
+    fetch("/Projeto/carrinho.php", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+      body: JSON.stringify({}),
+    })
+      .then((res) => {
+        if (!res.ok) {
+          if (res.status === 401) {
+            alert("Usuário não logado");
+          }
+          throw new Error("Erro HTTP: " + res.status);
+        }
+        return res.json();
+      })
+      .then((data) => {
+        setDadosDocCarrinho(Array.isArray(data) ? data : []);
+        setMensagens(Array.isArray(data) ? Array(data.length).fill(false) : []);
+      })
+      .catch((err) => {
+        console.error("Erro ao carregar carrinho:", err);
+        alert("Erro ao carregar carrinho.");
+      });
+  };
+
+  // Carrega os itens confirmados
+ const carregarItensConfirmados = () => {
+  fetch("/Projeto/confirmados.php", {
+    credentials: "include",
+  })
+    .then((res) => {
+      if (!res.ok) {
+        throw new Error("Erro HTTP: " + res.status);
+      }
+      return res.json();
+    })
+    .then((data) => {
+      if (!data.confirmados) return;
+
+      const confirmados = data.confirmados;
+      const novosChecks = dadosDocCarrinho.map(
+        (item) => (confirmados[item.Item_id] ? true : false)
+      );
+
+      setMensagens(novosChecks);
+    })
+    .catch((err) => {
+      console.error("Erro ao carregar itens confirmados:", err);
+    });
+};
 
   useEffect(() => {
     checarLogin();
   }, []);
 
+  useEffect(() => {
+    if (dadosDocCarrinho.length > 0) {
+      carregarItensConfirmados();
+    }
+  }, [dadosDocCarrinho]);
+
+  // Confirma item
   const confirmarItem = (index) => {
     const copia = [...mensagens];
     copia[index] = !copia[index];
     setMensagens(copia);
-
     if (copia[index]) alert("Item confirmado!");
+
+    const itemConfirmado = dadosDocCarrinho[index];
+    fetch("/Projeto/confirmados.php", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+      body: JSON.stringify({
+        quantidade: 1,
+        Item_id: itemConfirmado.Item_id,
+      }),
+    }).catch((err) => {
+      console.error("Erro ao enviar itens confirmados", err);
+    });
   };
 
   if (usuarioLogado === false) {

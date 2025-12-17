@@ -74,6 +74,11 @@ suporte.addEventListener("click", function () {
     window.location.href = "../HTML/suporte.html";
   }, 200);
 });
+const toggle = document.getElementById("theme-toggle");
+function aplicarTema(tema) {
+  document.body.style.backgroundColor = tema === "escuro" ? "black" : "white";
+  toggle.checked = tema === "escuro";
+}
 const pp1 = document.getElementById("pp1");
 const pp2 = document.getElementById("pp2");
 const pp3 = document.getElementById("pp3");
@@ -95,9 +100,10 @@ promotion.addEventListener("click", function () {
   pp3.style.display = "none";
   cc1.style.display = "flex";
   pp1.style.paddingTop = "140px";
-  cc1.paddingTop = "140px";
+  cc1.marginTop = "200px";
+  hh.style.marginTop = "150px"
   btm.style.display = "block";
-  btm.style.marginTop = "58px";
+  btm.style.marginTop = "100px";
 });
 const produtos = document.getElementById("produtos");
 produtos.addEventListener("click", function () {
@@ -107,9 +113,9 @@ produtos.addEventListener("click", function () {
   hh.style.display = "none";
   pp1.style.paddingTop = "140px";
   btm.style.display = "block";
-
-  pp2.style.display = "block";
-  pp2.style.paddingTop = "140px";
+  btm.style.marginTop = "100px"
+  pp2.style.display = "flex";
+  pp2.style.paddingTop = "100px";
   pp3.style.display = "none";
   cc1.style.display = "none";
   hh.style.display = "none";
@@ -127,22 +133,57 @@ btm.addEventListener("click", function () {
   btm.style.display = "none";
   hhh.style.display = "block";
 });
+document.addEventListener("DOMContentLoaded", () => {
+  const toggle = document.getElementById("theme-toggle");
+  function aplicarTema(tema) {
+    document.body.style.backgroundColor = tema === "escuro" ? "black" : "white";
+    toggle.checked = tema === "escuro";
+
+    const corTexto = tema === "escuro" ? "white" : "black";
+    hh.style.color = corTexto;
+    pp3.style.color = corTexto;
+    hhh.style.color = corTexto;
+  }
+  // Pega o tema atual do cookie ao carregar a página
+  fetch("../cookie.php")
+    .then((res) => {
+      if (!res.ok) throw new Error("Erro ao buscar tema do cookie");
+      return res.json();
+    })
+    .then((data) => {
+      aplicarTema(data.valor); // Aplica tema do cookie
+    })
+    .catch((err) => {
+      console.error("Não foi possível carregar o tema:", err);
+      aplicarTema("claro"); // Tema padrão
+    });
+
+  // Listener do toggle (aplica tema e salva no cookie)
+  toggle.addEventListener("change", () => {
+    const tema = toggle.checked ? "escuro" : "claro";
+    aplicarTema(tema);
+
+    fetch("../cookie.php", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ tema }),
+    })
+      .then((res) => res.json())
+      .then((data) => console.log("Tema atualizado:", data.valor))
+      .catch((err) => console.error("Erro ao salvar tema:", err));
+  });
+});
 const contador = document.getElementById("contador-cart");
 function atualizarQuantidadeCarrinho() {
-  fetch(
-    "https://uncallously-productile-leighton.ngrok-free.dev/Projeto/verificacao.php"
-  )
+  fetch("/Projeto/verificacao.php")
     .then((res) => res.json())
     .then((situacaodousuario) => {
       if (situacaodousuario == true) {
-        fetch(
-          "https://uncallously-productile-leighton.ngrok-free.dev/Projeto/carrinho.php",
-          {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ idcart: true }),
-          }
-        )
+        fetch("/Projeto/carrinho.php", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ idcart: true }),
+        })
           .then((res) => res.json())
           .then((qtd) => {
             if (contador) {
@@ -152,45 +193,13 @@ function atualizarQuantidadeCarrinho() {
               console.log("contador-cart NÃO encontrado!");
             }
           });
-      }
-      else{
-        console.log("Usuario não logado")
+      } else {
+        console.log("Usuario não logado");
         contador.innerText = 0;
       }
     });
 }
-
-document.addEventListener("DOMContentLoaded", () => {
-  setInterval(() => {
-    atualizarQuantidadeCarrinho();
-  }, 1000);
-});
-const toggle = document.getElementById("theme-toggle");
-let tema = null;
-toggle.addEventListener("change", () => {
-  if (toggle.checked) {
-    console.log("Modo escuro ativado!");
-    document.body.style.backgroundColor = "black";
-    tema = "black";
-    fetch(
-      "https://uncallously-productile-leighton.ngrok-free.dev/Projeto/configuracoes.php",
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({tema}),
-      }
-    );
-  } else {
-    console.log("Modo claro ativado!");
-    document.body.style.backgroundColor = "white";
-    tema = "white";
-    fetch(
-      "https://uncallously-productile-leighton.ngrok-free.dev/Projeto/configuracoes.php",
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({tema}),
-      }
-    );
-  }
-});
+atualizarQuantidadeCarrinho();
+setInterval(() => {
+  atualizarQuantidadeCarrinho();
+}, 10000);
